@@ -3,12 +3,9 @@
 
 void task3() {
     vector<double> time_naive;//время работы наивного алгоритма 
-    //time_naive.push_back(0);
+    
     vector<double> time_RAM;//время работы алгоритма Рэма на массиве
-    //time_RAM.push_back(0);
-//    double time_naive = 0;
-  //  double time_RAM = 0;
-
+    
     int time_size = 0;
     int m;
     int n;
@@ -42,21 +39,17 @@ void task3() {
         }
         //вызов наивного алгоритма
         double start = clock();
-        //auto start = chrono::high_resolution_clock::now();
+       
         component_naive(comp1, E, n, m);
-        //auto end = chrono::high_resolution_clock::now();
+        
         time_naive.push_back((clock() - start) / (double)CLOCKS_PER_SEC);
 
-        // time_naive = chrono::duration_cast<chrono::microseconds>(chrono::high_resolution_clock::now() - start).count();
-
+        
          //вызов алгоритма Рэма
         start = clock();
-        // start = chrono::high_resolution_clock::now();
+        
         array_RAM(comp2, E, n, m, P);
-        // end = chrono::high_resolution_clock::now();
-
-        // time_RAM = chrono::duration_cast<chrono::microseconds>(chrono::high_resolution_clock::now() - start).count();
-        time_RAM.push_back((clock() - start) / (double)CLOCKS_PER_SEC);
+       time_RAM.push_back((clock() - start) / (double)CLOCKS_PER_SEC);
         time_size += 1;
         cout << time_size << " ";
     }

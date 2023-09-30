@@ -12,7 +12,7 @@ void task2() {
     vector<int> P(n);
     //Генерация случайного графа
     vector<vector<int>> E(m, vector<int>(2));
-    // srand(time(0));//разные базы для генерации
+   
 
     for (int j = 0; j < m; j++) {
         int a = rand() % n;
@@ -33,8 +33,7 @@ void task2() {
     auto end = chrono::high_resolution_clock::now();
 
     time_naive = chrono::duration_cast<chrono::microseconds>(end - start).count();
-    //  chrono::duration<float> duration = end - start;//секунды и мс
-      //time_naive = duration.count();
+    
 
     cout << "Массив comp при использовании наивного алгоритма:" << endl;
     for (int i = 0; i < n; i++) {
@@ -49,8 +48,7 @@ void task2() {
     end = chrono::high_resolution_clock::now();
 
     time_RAM = chrono::duration_cast<chrono::microseconds>(end - start).count();
-    //   duration = end - start;
-      //time_RAM = duration.count();
+    
 
     cout << "Массив comp при использовании алгоритма Рэма:" << endl;
     for (int i = 0; i < n; i++) {
