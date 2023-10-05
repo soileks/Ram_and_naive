@@ -1,36 +1,22 @@
 #pragma once
-#include<iostream>
+
+//#include<iostream>
 #include<math.h>
 #include <time.h>
 #include <random>
 #include<chrono>
-#include <vector>
+//#include <vector>
 #include <algorithm>
+#include"Graph and set.h"
 
 using namespace std;
 
-void create(int x, vector<int>& P) { //Р это коллекция
-    P[x] = x;
-}
-
-int search(int x, const vector<int>& P) {
-    return P[x];
-}
-
-void join(int x, int y, vector<int>& P) {
-    int z = min(x, y);
-    for (int i = 0; i < P.size(); i++) {
-        if (P[i] == x || P[i] == y) {
-            P[i] = z;//принадлежность множеству
-        }
-    }
-}
 
 void component_naive(vector<int>& comp, const vector<vector<int>>& E, int n, int m) {
     for (int i = 0; i < n; i++) {
         comp[i] = i;
     }
-    for (int i = 0; i < n-1 ; i++) {//для каждого ребра ищем минимум
+    for (int i = 0; i < n - 1; i++) {//для каждого ребра ищем минимум
         for (int j = 0; j < m; j++) {
             int q = min(comp[E[j][0]], comp[E[j][1]]);
             comp[E[j][0]] = q;
@@ -39,24 +25,20 @@ void component_naive(vector<int>& comp, const vector<vector<int>>& E, int n, int
     }
 }
 
-void array_RAM(vector<int>& comp, const vector<vector<int>>& E, int n, int m, vector<int>& P) {
+void array_RAM(vector<int>& comp, const vector<vector<int>>& E, int n, int m) {
+    Set s(n);
     for (int i = 0; i < n; i++) {
-        create(i, P);
+        s.create(i);
     }
     for (int i = 0; i < m; i++) {
-        int n1 = search(E[i][0], P);
-        int n2 = search(E[i][1], P);
+        int n1 = s.search(E[i][0]);
+        int n2 = s.search(E[i][1]);
         if (n1 != n2) {
-            join(n1, n2, P);
+            s.join(n1, n2);
         }
     }
     for (int i = 0; i < n; i++) {
-        comp[i] = search(i, P);
+        comp[i] = s.search(i);
     }
 }
-
-
-
-
-
 

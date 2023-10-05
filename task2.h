@@ -7,23 +7,11 @@ void task2() {
     cin >> n;
     cout << "Введите количество рёбер графа: ";
     cin >> m;
+    Graph gr;
     vector<int> comp1(n);//для 1-го алгоритма
     vector<int> comp2(n);//для 2-го
-    vector<int> P(n);
-    //Генерация случайного графа
-    vector<vector<int>> E(m, vector<int>(2));
-   
 
-    for (int j = 0; j < m; j++) {
-        int a = rand() % n;
-        int b = rand() % n;
-        //Обеспечивает, чтобы рёбра не повторялись
-        while (find(E.begin(), E.end(), vector<int>{a, b}) != E.end() || find(E.begin(), E.end(), vector<int>{b, a}) != E.end() || a == b) {//find возвращает указатель на конец, если не нашли
-            a = rand() % n;
-            b = rand() % n;
-        }
-        E[j] = { a, b };
-    }
+    vector<vector<int>> E = gr.Generate_graph(n, m);
     double time_naive = 0;//Время работы алг-ма наивный
     double time_RAM = 0;//Время работы алг-ма Рэма
 
@@ -44,7 +32,7 @@ void task2() {
 
     //вызов алгоритма Рэма
     start = chrono::high_resolution_clock::now();
-    array_RAM(comp2, E, n, m, P);
+    array_RAM(comp2, E, n, m);
     end = chrono::high_resolution_clock::now();
 
     time_RAM = chrono::duration_cast<chrono::microseconds>(end - start).count();
@@ -57,29 +45,7 @@ void task2() {
     cout << endl;
     cout << "Время работы алгоритма Рэма: " << time_RAM << " mks" << endl;
 
-    //Вывод графа в виде матрицы смежности
-    if (n <= 10) {
-        cout << "Граф задан матрицей смежности:" << endl;
-        int** matrix = new int* [n];
-        for (int i = 0; i < n; i++)
-            matrix[i] = new int[n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++)
-            {
-                matrix[i][j] = 0;
-            }
-        }
-        for (int i = 0; i < m; i++) {
-            matrix[E[i][0]][E[i][1]] = 1;
-            matrix[E[i][1]][E[i][0]] = 1;
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++)
-            {
-                cout << matrix[i][j] << " ";
-            }
-            cout << endl;
+    gr.print_graph();
 
-        }
-    }
+   
 }

@@ -9,9 +9,9 @@ void task4() {
             int m = 0;
             vector<int> comp(n);
             vector<int> comp_connected(n);
-            vector<int> P(n);
+           
             vector<vector<int>> E;
-            array_RAM(comp, E, n, m, P);
+            array_RAM(comp, E, n, m);
             while (comp != comp_connected) {
                 m++;
                 int a = rand() % n;
@@ -21,7 +21,7 @@ void task4() {
                     b = rand() % n;
                 }
                 E.push_back({ a, b });
-                array_RAM(comp, E, n, m, P);
+                array_RAM(comp, E, n, m);
             }
             M.push_back(m);
            cout << i << endl;
