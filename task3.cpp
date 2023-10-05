@@ -1,9 +1,9 @@
-#include"task3.h"
+п»ї#include"task3.h"
 
 void task3() {
-    vector<double> time_naive;//время работы наивного алгоритма 
+    vector<double> time_naive;//РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ РЅР°РёРІРЅРѕРіРѕ Р°Р»РіРѕСЂРёС‚РјР° 
 
-    vector<double> time_RAM;//время работы алгоритма Рэма на массиве
+    vector<double> time_RAM;//РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ Р°Р»РіРѕСЂРёС‚РјР° Р СЌРјР° РЅР° РјР°СЃСЃРёРІРµ
 
     int time_size = 0;
     int m;
@@ -24,11 +24,11 @@ void task3() {
         vector<int> com1(n);
         vector<int> com2(n);
        // vector<int> c(n);
-        comp1 = com1;//для 1-го алгоритма
-        comp2 = com2;//для 2-го
+        comp1 = com1;//РґР»СЏ 1-РіРѕ Р°Р»РіРѕСЂРёС‚РјР°
+        comp2 = com2;//РґР»СЏ 2-РіРѕ
        // s.Reinitialization(c);
         Set s(n);
-        //вызов наивного алгоритма
+        //РІС‹Р·РѕРІ РЅР°РёРІРЅРѕРіРѕ Р°Р»РіРѕСЂРёС‚РјР°
 
         vector<vector<int>> E = g.Generate_graph(n, m);
 
@@ -39,7 +39,7 @@ void task3() {
         time_naive.push_back((clock() - start) / (double)CLOCKS_PER_SEC);
 
 
-        //вызов алгоритма Рэма
+        //РІС‹Р·РѕРІ Р°Р»РіРѕСЂРёС‚РјР° Р СЌРјР°
         start = clock();
 
         array_RAM(comp2, E, n, m,s);

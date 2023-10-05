@@ -1,10 +1,10 @@
-#include"task1.h"
+ï»¿#include"task1.h"
 
 void component_naive(vector<int>& comp, const vector<vector<int>>& E, int n, int m) {
     for (int i = 0; i < n; i++) {
         comp[i] = i;
     }
-    for (int i = 0; i < n - 1; i++) {//äëÿ êàæäîãî ðåáðà èùåì ìèíèìóì
+    for (int i = 0; i < n - 1; i++) {//Ð´Ð»Ñ ÐºÐ°Ð¶Ð´Ð¾Ð³Ð¾ Ñ€ÐµÐ±Ñ€Ð° Ð¸Ñ‰ÐµÐ¼ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼
         for (int j = 0; j < m; j++) {
             int q = min(comp[E[j][0]], comp[E[j][1]]);
             comp[E[j][0]] = q;

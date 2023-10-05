@@ -1,20 +1,20 @@
-#include"task2.h"
+п»ї#include"task2.h"
 
 void task2() {
     int n, m;
-    cout << "Введите количество вершин графа: ";
+    cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ РіСЂР°С„Р°: ";
     cin >> n;
-    cout << "Введите количество рёбер графа: ";
+    cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂС‘Р±РµСЂ РіСЂР°С„Р°: ";
     cin >> m;
     Graph gr;
-    vector<int> comp1(n);//для 1-го алгоритма
-    vector<int> comp2(n);//для 2-го
+    vector<int> comp1(n);//РґР»СЏ 1-РіРѕ Р°Р»РіРѕСЂРёС‚РјР°
+    vector<int> comp2(n);//РґР»СЏ 2-РіРѕ
     Set s(n);
     vector<vector<int>> E = gr.Generate_graph(n, m);
-    double time_naive = 0;//Время работы алг-ма наивный
-    double time_RAM = 0;//Время работы алг-ма Рэма
+    double time_naive = 0;//Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ Р°Р»Рі-РјР° РЅР°РёРІРЅС‹Р№
+    double time_RAM = 0;//Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ Р°Р»Рі-РјР° Р СЌРјР°
 
-    //вызов наивного алгоритма
+    //РІС‹Р·РѕРІ РЅР°РёРІРЅРѕРіРѕ Р°Р»РіРѕСЂРёС‚РјР°
     auto start = chrono::high_resolution_clock::now();
     component_naive(comp1, E, n, m);
     auto end = chrono::high_resolution_clock::now();
@@ -22,30 +22,28 @@ void task2() {
     time_naive = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
 
-    cout << "Массив comp при использовании наивного алгоритма:" << endl;
+    cout << "РњР°СЃСЃРёРІ comp РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё РЅР°РёРІРЅРѕРіРѕ Р°Р»РіРѕСЂРёС‚РјР°:" << endl;
     for (int i = 0; i < n; i++) {
         cout << comp1[i] << " ";
     }
     cout << endl;
-    cout << "Время работы наивного алгоритма: " << time_naive << " mks" << endl;
+    cout << "Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ РЅР°РёРІРЅРѕРіРѕ Р°Р»РіРѕСЂРёС‚РјР°: " << time_naive << " mks" << endl;
 
-    //вызов алгоритма Рэма
+    //РІС‹Р·РѕРІ Р°Р»РіРѕСЂРёС‚РјР° Р СЌРјР°
     start = chrono::high_resolution_clock::now();
     array_RAM(comp2, E, n, m,s);
     end = chrono::high_resolution_clock::now();
 
     time_RAM = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
-
-    cout << "Массив comp при использовании алгоритма Рэма:" << endl;
+    cout << "РњР°СЃСЃРёРІ comp РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё Р°Р»РіРѕСЂРёС‚РјР° Р СЌРјР°:" << endl;
     for (int i = 0; i < n; i++) {
         cout << comp2[i] << " ";
     }
     cout << endl;
-    cout << "Время работы алгоритма Рэма: " << time_RAM << " mks" << endl;
+    cout << "Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ Р°Р»РіРѕСЂРёС‚РјР° Р СЌРјР°: " << time_RAM << " mks" << endl;
 
     gr.print_graph();
-
 
 }
 

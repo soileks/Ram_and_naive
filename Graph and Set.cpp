@@ -1,17 +1,17 @@
-#include"Graph and Set.h"
+п»ї#include"Graph and Set.h"
 
 vector<vector<int>> Graph::Generate_graph(int _n, int _m) {
     m = _m;
     n = _n;
-    //Генерация случайного графа
+    //Р“РµРЅРµСЂР°С†РёСЏ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ РіСЂР°С„Р°
     vector<vector<int>> e(m, vector<int>(2));
     E = e;
 
     for (int j = 0; j < m; j++) {
         int a = rand() % n;
         int b = rand() % n;
-        //Обеспечивает, чтобы рёбра не повторялись
-        while (find(E.begin(), E.end(), vector<int>{a, b}) != E.end() || find(E.begin(), E.end(), vector<int>{b, a}) != E.end() || a == b) {//find возвращает указатель на конец, если не нашли
+        //РћР±РµСЃРїРµС‡РёРІР°РµС‚, С‡С‚РѕР±С‹ СЂС‘Р±СЂР° РЅРµ РїРѕРІС‚РѕСЂСЏР»РёСЃСЊ
+        while (find(E.begin(), E.end(), vector<int>{a, b}) != E.end() || find(E.begin(), E.end(), vector<int>{b, a}) != E.end() || a == b) {//find РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РєРѕРЅРµС†, РµСЃР»Рё РЅРµ РЅР°С€Р»Рё
             a = rand() % n;
             b = rand() % n;
         }
@@ -22,9 +22,9 @@ vector<vector<int>> Graph::Generate_graph(int _n, int _m) {
 }
 
 void Graph:: print_graph() {
-    //Вывод графа в виде матрицы смежности
+    //Р’С‹РІРѕРґ РіСЂР°С„Р° РІ РІРёРґРµ РјР°С‚СЂРёС†С‹ СЃРјРµР¶РЅРѕСЃС‚Рё
     if (n <= 10) {
-        cout << "Граф задан матрицей смежности:" << endl;
+        cout << "Р“СЂР°С„ Р·Р°РґР°РЅ РјР°С‚СЂРёС†РµР№ СЃРјРµР¶РЅРѕСЃС‚Рё:" << endl;
         int** matrix = new int* [n];
         for (int i = 0; i < n; i++)
             matrix[i] = new int[n];
@@ -55,7 +55,7 @@ Set::Set(int n) {
     col = _c;
 }
 
-void Set:: create(int x) { //col это коллекция
+void Set:: create(int x) { //col СЌС‚Рѕ РєРѕР»Р»РµРєС†РёСЏ
 
     col[x] = x;
 }
@@ -67,7 +67,7 @@ void Set:: join(int x, int y) {
     int z = min(x, y);
     for (int i = 0; i < col.size(); i++) {
         if (col[i] == x || col[i] == y) {
-            col[i] = z;//принадлежность множеству
+            col[i] = z;//РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ РјРЅРѕР¶РµСЃС‚РІСѓ
         }
     }
 }
