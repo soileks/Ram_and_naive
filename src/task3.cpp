@@ -1,4 +1,3 @@
-
 ﻿#include"task3.h"
 #include<fstream>
 //#include<chrono>
@@ -17,21 +16,21 @@ void task3() {
     vector<int> comp2;
     Graph g;
 
-
+    
 
     for (int i = 1; i <= 1002; i += 10) {
         n = i;
 
-        // m = n - 1;
+         // m = n - 1;
         m = n * n / 10;
-        // m = log2(n);
+       // m = log2(n);
 
         vector<int> com1(n);
         vector<int> com2(n);
-        // vector<int> c(n);
+       // vector<int> c(n);
         comp1 = com1;//для 1-го алгоритма
         comp2 = com2;//для 2-го
-        // s.Reinitialization(c);
+       // s.Reinitialization(c);
         Set s(n);
         //вызов наивного алгоритма
 
@@ -48,7 +47,7 @@ void task3() {
         //вызов алгоритма Рэма
         start = chrono::high_resolution_clock::now();
 
-        array_RAM(comp2, E, n, m, s);
+        array_RAM(comp2, E, n, m,s);
         end = chrono::high_resolution_clock::now();
         time_RAM.push_back(chrono::duration_cast<chrono::microseconds>(end - start).count());
         time_size += 1;
@@ -61,11 +60,11 @@ void task3() {
     //fout << "Время работы наивного алгоритма для m = n - 1:\n";
    // fout << "Время работы наивного алгоритма для m = m = n * n / 10:\n";
    // fout << "Время работы наивного алгоритма для  m = log2(n):\n";
-    for (int i = 0; i < time_size; i++) {
-        fout << time_naive[i];
-        fout << "\n";
+    for (int i = 0; i < time_size;i++) {
+    fout << time_naive[i];
+    fout << "\n";
     }
-    // fout << "$";
+   // fout << "$";
     fout.close();
     ofstream fout2;
     fout2.open("result2.txt");
@@ -78,6 +77,6 @@ void task3() {
         fout2 << time_RAM[i];
         fout2 << "\n";
     }
-    // fout2 << "$";
+   // fout2 << "$";
     fout2.close();
 }
