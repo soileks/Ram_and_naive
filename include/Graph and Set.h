@@ -2,19 +2,20 @@
 
 #include<vector>
 #include<iostream>
+#include<ctime>
 
 using namespace std;
 
 class Set;
 
 class Graph {
-    int n;
-    int m;
-    vector<vector<int>> E;
+    int vertex;
+    int edge;
+    vector<vector<int>> set_edge;
 
 public:
 
-    vector<vector<int>> Generate_graph(int _n, int _m);
+    vector<vector<int>> Generate_graph(int _vertex, int _edge);
 
     void print_graph();
 
@@ -24,7 +25,7 @@ class Set {
     vector<int> col;
 
 public:
-    Set(int n);
+    Set(int vertex=1);
 
     void create(int x);
     

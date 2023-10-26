@@ -11,6 +11,6 @@
 
 using namespace std;
 
-void component_naive(vector<int>& comp, const vector<vector<int>>& E, int n, int m);
-void array_RAM(vector<int>& comp, const vector<vector<int>>& E, int n, int m,Set s);
+void component_naive(vector<int>& comp, const vector<vector<int>>& set_edge, int vertex, int edge);
+void array_RAM(vector<int>& comp, const vector<vector<int>>& set_edge, int vertex, int edge,Set s);
 

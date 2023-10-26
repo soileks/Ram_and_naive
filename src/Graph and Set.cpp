@@ -1,45 +1,46 @@
 ﻿#include"Graph and Set.h"
 
-vector<vector<int>> Graph::Generate_graph(int _n, int _m) {
-    m = _m;
-    n = _n;
-    //Генерация случайного графа
-    vector<vector<int>> e(m, vector<int>(2));
-    E = e;
 
-    for (int j = 0; j < m; j++) {
-        int a = rand() % n;
-        int b = rand() % n;
+vector<vector<int>> Graph::Generate_graph(int _vertex, int _edge) {
+    edge = _edge;
+    vertex = _vertex;
+    //Генерация случайного графа
+    vector<vector<int>> e(edge, vector<int>(2));
+    set_edge = e;
+    srand(time(NULL));
+
+    for (int j = 0; j < edge; j++) {
+        int a = rand() % vertex;
+        int b = rand() % vertex;
         //Обеспечивает, чтобы рёбра не повторялись
-        while (find(E.begin(), E.end(), vector<int>{a, b}) != E.end() || find(E.begin(), E.end(), vector<int>{b, a}) != E.end() || a == b) {//find возвращает указатель на конец, если не нашли
-            a = rand() % n;
-            b = rand() % n;
+        while (find(set_edge.begin(), set_edge.end(), vector<int>{a, b}) != set_edge.end() || find(set_edge.begin(), set_edge.end(), vector<int>{b, a}) != set_edge.end() || a == b) {//find возвращает указатель на конец, если не нашли
+            a = rand() % vertex;
+            b = rand() % vertex;
         }
-        E[j] = { a, b };
+        set_edge[j] = { a, b };
     }
 
-    return E;
+    return set_edge;
 }
 
 void Graph:: print_graph() {
     //Вывод графа в виде матрицы смежности
-    if (n <= 10) {
+    if (vertex <= 10) {
         cout << "Граф задан матрицей смежности:" << endl;
-        int** matrix = new int* [n];
-        for (int i = 0; i < n; i++)
-            matrix[i] = new int[n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++)
+        vector<vector<int>> matrix(vertex, vector<int>(vertex));
+        
+        for (int i = 0; i < vertex; i++) {
+            for (int j = 0; j < vertex; j++)
             {
                 matrix[i][j] = 0;
             }
         }
-        for (int i = 0; i < m; i++) {
-            matrix[E[i][0]][E[i][1]] = 1;
-            matrix[E[i][1]][E[i][0]] = 1;
+        for (int i = 0; i < edge; i++) {
+            matrix[set_edge[i][0]][set_edge[i][1]] = 1;
+            matrix[set_edge[i][1]][set_edge[i][0]] = 1;
         }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++)
+        for (int i = 0; i < vertex; i++) {
+            for (int j = 0; j < vertex; j++)
             {
                 cout << matrix[i][j] << " ";
             }
@@ -49,9 +50,9 @@ void Graph:: print_graph() {
     }
 }
 
-Set::Set(int n) {
+Set::Set(int vertex) {
 
-    vector<int> _c(n);
+    vector<int> _c(vertex);
     col = _c;
 }
 

@@ -2,30 +2,31 @@
 
 void task4() {
 
-    vector<int> M;
+    vector<int> set_edges_for_out;
     int tmp = 0;
     for (int i = 1; i <= 1002; i += 10) {
-        int n = i;
-        int m = 0;
-        vector<int> comp(n);
-        vector<int> comp_connected(n);
-        Set s(n);
-        vector<vector<int>> E;
-        array_RAM(comp, E, n, m,s);
+        int vertex = i;
+        int edge = 0;
+        vector<int> comp(vertex);
+        vector<int> comp_connected(vertex);
+        Set s(vertex);
+        vector<vector<int>> set_edge;
+        array_RAM(comp, set_edge, vertex, edge,s);
+        srand(time(NULL));
         while (comp != comp_connected) {
-            m++;
-            int a = rand() % n;
-            int b = rand() % n;
-            while ((find(E.begin(), E.end(), vector<int>{a, b}) != E.end()) || (find(E.begin(), E.end(), vector<int>{b, a}) != E.end()) || (a == b)) {
-                a = rand() % n;
-                b = rand() % n;
+            edge++;
+            int a = rand() % vertex;
+            int b = rand() % vertex;
+            while ((find(set_edge.begin(), set_edge.end(), vector<int>{a, b}) != set_edge.end()) || (find(set_edge.begin(), set_edge.end(), vector<int>{b, a}) != set_edge.end()) || (a == b)) {
+                a = rand() % vertex;
+                b = rand() % vertex;
             }
-            E.push_back({ a, b });
-            array_RAM(comp, E, n, m,s);
+            set_edge.push_back({ a, b });
+            array_RAM(comp, set_edge, vertex, edge,s);
         }
-        M.push_back(m);
+        set_edges_for_out.push_back(edge);
         cout << i << endl;
-        cout << m << endl;
+        cout << edge << endl;
         tmp++;
     }
 }
